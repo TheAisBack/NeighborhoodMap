@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Find a Burger</title>
+	<link rel="shortcut icon" type="img/x-icon" href="favicon.ico"/>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+  	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src='js/knockout.js'></script>
+	<script src="js/burger.js"></script>
+	<script src="js/style.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="map"></div>
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="index.html" style="padding-right: 15px;"><img id="hamburger" src="img/hamburger.png"></img>Burgers</a>
+        </li>
+        <input id="filter" type="text" placeholder="Which Burger do you want?" data-bind="value: filterText, valueUpdate: 'afterkeydown', event: { keyup: filter }">
+      	<ul id="list" class="list-group" data-bind="foreach: mapList">
+        <a class="list-group-item" data-bind="css: {active: selected}, text: name,  visible: show, click: $parent.setSelected"></a>
+        </ul>
+      </ul>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <a href="#menu-toggle" class="btn-default" id="menu-toggle"><img class="menuimage" src="img/Menu.png"></img></a>
+        </div>
+      </div>
+    </div>
+  </div>
+	<script type="text/javascript">
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+	    $("#wrapper").toggleClass("toggled");
+	  });
+	  $("body").click(function(e) {
+	    e.preventDefault();
+	    $("wrapper").removeClass("toggled");
+	  });
+	  $('.menu-ui a').on('click', function() {
+	    var filter = $(this).data('filter');
+      $(this).addClass('active').siblings().removeClass('active');
+      markers.setFilter(function(f) {
+      	return (filter === 'all') ? true : f.properties[filter] === true;
+      });
+      return false;
+	  });
+		var map, infoWindow;
+		function initMap() {
+		  map = new google.maps.Map(
+			  	document.getElementById('map'),
+			  	{
+				    center: {lat: 49.8998, lng: -97.1375},
+				    zoom: 11,
+				    styles: styles,
+				    mapTypeControl: false
+			  	}
+		  	);
+		  infowindow = new google.maps.InfoWindow();
+		  ko.applyBindings(new ViewModel());
+		}
+	</script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGRHrAy1xjAmI2r31H7MohFOpW8zUB9Yg&libraries=geometry&v=3&callback=initMap"></script>
+</body>
+</html>
