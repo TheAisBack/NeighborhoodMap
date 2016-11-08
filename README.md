@@ -14,5 +14,5 @@ And thats it.
 To Run the Application, download the zip file, so that we can see the application on page speed. Open up the index.html file and have fun finding burgers!
 
 Sources:
-[GitHub](http://knockoutjs.com/documentation/introduction.html)
-[GitHub](http://stackoverflow.com/)
+[Knockout](http://knockoutjs.com/documentation/introduction.html)
+[Stackoverflow](http://stackoverflow.com/)
