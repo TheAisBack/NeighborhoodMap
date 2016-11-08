@@ -1,4 +1,15 @@
 //Main function of the website.
+$.ajax({
+    url: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDGRHrAy1xjAmI2r31H7MohFOpW8zUB9Yg&libraries=geometry&v=3&callback=initMap',
+    dataType: 'script',
+    timeout: 1000, 
+    success: function () {
+        console.log('Please wait map is loading.');
+    },
+    error: function () {
+    	console.log('Map failed please use Google maps.');
+	}
+});
 $("#menu-toggle").click(function(e) {
 	e.preventDefault();
 	$("#wrapper").toggleClass("toggled");
@@ -82,9 +93,14 @@ var ViewModel = function() {
 	                var result = data.response.venue;
 	                burgerMarker.rating = result.hasOwnProperty('rating') ? result.rating : '';
 	            },
+	            error: function(e) {
+	            	alert('No Data Available');
+	            }//, 100);
+
+	            /*
 	            error: function (e) {
 	            	alert('No Data Available');
-	            }
+	            }*/
         });
 	};
 	var rating = function() {
