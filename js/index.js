@@ -6,8 +6,8 @@ $.ajax({
     success: function () {
         console.log('Please wait map is loading.');
     },
-    error: function(xhr){
-        alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+    error: function(burgerStatus){
+        alert('Request Status: ' + burgerStatus.status + ' Status Text: ' + burgerStatus.statusText + ' ' + burgerStatus.responseText);
     }
 });
 $("#menu-toggle").click(function(e) {
