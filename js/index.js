@@ -6,9 +6,9 @@ $.ajax({
     success: function () {
         console.log('Please wait map is loading.');
     },
-    error: function () {
-    	console.log('Map failed please use Google maps.');
-	}
+    error: function(xhr){
+        alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+    }
 });
 $("#menu-toggle").click(function(e) {
 	e.preventDefault();
