@@ -8,7 +8,7 @@ $.ajax({
     },
     error: function () {
     	console.log('Map failed please use Google maps.');
-	}
+    }
 });
 $("#menu-toggle").click(function(e) {
 	e.preventDefault();
